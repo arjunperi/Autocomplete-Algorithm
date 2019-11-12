@@ -16,6 +16,7 @@ public class BinarySearchLibrary {
 	 * @param comp how Items are compared for binary search
 	 * @return smallest index k such that list.get(k).equals(target)
 	 */
+
 	public static <T>
 	    int firstIndexSlow(List<T> list, 
 	    		           T target, Comparator<T> comp) {
@@ -28,7 +29,7 @@ public class BinarySearchLibrary {
 		}
 		return index+1;
 	}
-	
+
 	/**
 	 * Return smallest index of target in list using comp. 
 	 * Guaranteed to make ceiling(1 + log(list.size())) comparisons
@@ -47,7 +48,18 @@ public class BinarySearchLibrary {
 		
 		// (low,high] contains target
 		// TODO: write method
-		
+		while(low+1 != high) {
+			int mid = (high + low) / 2;
+			if ((comp.compare(list.get(mid), target)) < 0) {
+				low = mid;
+			}
+			if ((comp.compare(list.get(mid), target)) >= 0) {
+				high = mid;
+			}
+		}
+		if ((comp.compare(list.get(high), target)) == 0) {
+			return high;
+		}
 		return -1;
 	}
 
@@ -74,7 +86,18 @@ public class BinarySearchLibrary {
 		
 		// target in [low,high)
 		// TODO: write  method
-		
+		while(low!= high-1) {
+			int mid = (high + low) / 2;
+			if ((comp.compare(list.get(mid), target)) > 0) {
+				high = mid;
+			}
+			else {
+				low = mid;
+			}
+		}
+		if ((comp.compare(list.get(low), target)) == 0) {
+			return low;
+		}
 		return -1;
 	}
 	

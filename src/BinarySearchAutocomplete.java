@@ -28,8 +28,8 @@ public class BinarySearchAutocomplete implements Autocompletor {
 	 *            weight[i].
 	 * @return a BinarySearchAutocomplete whose myTerms object has myTerms[i] =
 	 *         a Term with word terms[i] and weight weights[i].
-	 * @throws a
-	 *             NullPointerException if either argument passed in is null
+	 * @throws
+	 * NullPointerException if either argument passed in is null
 	 */
 	public BinarySearchAutocomplete(String[] terms, double[] weights) {
 		if (terms == null || weights == null) {
@@ -108,11 +108,25 @@ public class BinarySearchAutocomplete implements Autocompletor {
 		if (first == -1) {               // prefix not found
 			return new ArrayList<>();
 		}
-
 		// write code here
+		PriorityQueue<Term> pq = new PriorityQueue<Term>(Comparator.comparing(Term::getWeight));
+		for (int i = first; i <= last; i ++){
+			if (!myTerms[i].getWord().startsWith(prefix))
+				continue;
+			if (pq.size() < k) {
+				pq.add(myTerms[i]);
+			} else if (pq.peek().getWeight() < myTerms[i].getWeight()) {
+				pq.remove();
+				pq.add(myTerms[i]);
+			}
+		}
 
-		return null;
-	
+		int numResults = Math.min(k, pq.size());
+		LinkedList<Term> ret = new LinkedList<>();
+		for (int i = 0; i < numResults; i++) {
+			ret.addFirst(pq.remove());
+		}
+		return ret;
 	}
 
 	@Override
