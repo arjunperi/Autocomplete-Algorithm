@@ -48,7 +48,7 @@ public class HashListAutocomplete implements Autocompletor {
                 }
             }
         }
-        return mySize; 
+        return mySize;
     }
 
     @Override
