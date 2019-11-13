@@ -20,9 +20,9 @@ public class HashListAutocomplete implements Autocompletor {
             //Pull out a term
             String word = terms[i];
             //Loop through the chars in the word
-            for (int j = 0; j < Math.min(word.length(), MAX_PREFIX); j++) {
+            for (int j = 0; j < Math.min(word.length(), MAX_PREFIX) +1 ; j++) {
                 //Get the prefixes
-                String pre = word.substring(0, j + 1);
+                String pre = word.substring(0, j);
                 //The current term
                 Term add = new Term(terms[i], weights[i]);
                 //Put prefix key in map
