@@ -22,7 +22,6 @@ public class HashListAutocomplete implements Autocompletor {
         return new ArrayList<Term>();
     }
 
-
     @Override
     //Fix adding to map part!
     public void initialize(String[] terms, double[] weights) {
@@ -32,20 +31,20 @@ public class HashListAutocomplete implements Autocompletor {
             //Pull out a term
             String word = terms[i];
             //Loop through the chars in the word
-            for (int j = 0; j < Math.min(word.length(), MAX_PREFIX) +1 ; j++) {
+            for (int j = 0; j < Math.min(word.length(), MAX_PREFIX) + 1; j++) {
                 //Get the prefixes
                 String pre = word.substring(0, j);
                 //The current term
                 Term add = new Term(terms[i], weights[i]);
                 //Put prefix key in map
-                myMap.putIfAbsent(pre, new ArrayList<Term>());
+                myMap.putIfAbsent(pre, new ArrayList<>());
                 //Add current term as value
                 myMap.get(pre).add(add);
             }
+        }
             for (String s : myMap.keySet()) {
                 Collections.sort(myMap.get(s), Comparator.comparing(Term::getWeight).reversed());
             }
-        }
     }
 
     @Override
