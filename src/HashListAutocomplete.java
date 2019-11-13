@@ -56,11 +56,12 @@ public class HashListAutocomplete implements Autocompletor {
     @Override
     public List<Term> topMatches(String prefix, int k) {
         if (myMap.containsKey(prefix)) {
-            return new ArrayList<>();
+            List<Term> all = myMap.get(prefix);
+            List<Term> list = all.subList(0, Math.min(k, all.size()));
+            return list;
         }
-        List<Term> all = myMap.get(prefix);
-        List<Term> list = all.subList(0, Math.min(k, all.size()));
-        return list;
+        
+        return new ArrayList<Term>();
 
     }
 }
