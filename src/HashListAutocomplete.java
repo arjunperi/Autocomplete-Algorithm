@@ -6,10 +6,12 @@ public class HashListAutocomplete implements Autocompletor {
     private int mySize;
 
     public HashListAutocomplete(String[] terms, double[] weights) {
-        initialize(terms, weights);
-        if (terms == null || weights == null)
+        if (terms == null || weights == null){
             throw new NullPointerException("One or more arguments null");
+        }
+        initialize(terms, weights);
     }
+
 
     @Override
     //Fix adding to map part!
@@ -54,11 +56,12 @@ public class HashListAutocomplete implements Autocompletor {
     @Override
     public List<Term> topMatches(String prefix, int k) {
         if (myMap.containsKey(prefix)) {
-            List<Term> all = myMap.get(prefix);
-            List<Term> list = all.subList(0, Math.min(k, all.size()));
-            return list;
+            return new ArrayList<>();
         }
-        return new ArrayList<>();
+        List<Term> all = myMap.get(prefix);
+        List<Term> list = all.subList(0, Math.min(k, all.size()));
+        return list;
+
     }
 }
 
