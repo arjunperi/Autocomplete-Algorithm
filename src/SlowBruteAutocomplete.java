@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class SlowBruteAutocomplete extends BruteAutocomplete {
     /**
      * Create immutable instance with terms constructed from parameter
@@ -11,5 +14,15 @@ public class SlowBruteAutocomplete extends BruteAutocomplete {
      */
     public SlowBruteAutocomplete(String[] terms, double[] weights) {
         super(terms, weights);
+    }
+
+    @Override
+    public List<Term> topMatches(String prefix, int k){
+        List<Term> list = new ArrayList<>();
+        for (Term t: myTerms){
+            if (t.getWord().startsWith(prefix)){
+                list.add(t);
+            }
+        }
     }
 }

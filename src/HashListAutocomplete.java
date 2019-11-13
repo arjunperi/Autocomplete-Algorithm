@@ -12,6 +12,16 @@ public class HashListAutocomplete implements Autocompletor {
         initialize(terms, weights);
     }
 
+    @Override
+    public List<Term> topMatches(String prefix, int k) {
+        if (myMap.containsKey(prefix)) {
+            List<Term> all = myMap.get(prefix);
+            List<Term> list = all.subList(0, Math.min(k, all.size()));
+            return list;
+        }
+        return new ArrayList<Term>();
+    }
+
 
     @Override
     //Fix adding to map part!
@@ -51,18 +61,6 @@ public class HashListAutocomplete implements Autocompletor {
             }
         }
         return mySize;
-    }
-
-    @Override
-    public List<Term> topMatches(String prefix, int k) {
-        if (myMap.containsKey(prefix)) {
-            List<Term> all = myMap.get(prefix);
-            List<Term> list = all.subList(0, Math.min(k, all.size()));
-            return list;
-        }
-        
-        return new ArrayList<Term>();
-
     }
 }
 
