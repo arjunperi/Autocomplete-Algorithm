@@ -14,12 +14,14 @@ public class AutocompleteMain {
 	final static String BRUTE_AUTOCOMPLETE = "BruteAutocomplete";
 	final static String BINARY_SEARCH_AUTOCOMPLETE = "BinarySearchAutocomplete";
 	final static String HASHLIST_AUTOCOMPLETE = "HashListAutocomplete";
+	final static String SLOW_BRUTE_AUTOCOMPLETE = "SlowBruteAutocomplete";
 	
 	/* Modify name of Autocompletor implementation as necessary */
 	
 	final static String AUTOCOMPLETOR_CLASS_NAME = BRUTE_AUTOCOMPLETE;
 	//final static String AUTOCOMPLETOR_CLASS_NAME = BINARY_SEARCH_AUTOCOMPLETE;
 	//final static String AUTOCOMPLETOR_CLASS_NAME = HASHLIST_AUTOCOMPLETE;
+	//final static String AUTOCOMPLETOR_CLASS_NAME = SLOW_BRUTE_AUTOCOMPLETE;
 	
 	public static void main(String[] args) {
 		final int K = 10;
